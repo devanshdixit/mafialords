@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.scss";
@@ -11,7 +11,7 @@ import ConnectButton from "../components/ConnectWallet";
 import DisconnectButton from "../components/DisconnectWallet";
 import { Center } from "@chakra-ui/layout";
 
-const Home: NextPage = () => {
+const Home: NextPage<any> = () => {
   const [Tezos, setTezos] = useState<TezosToolkit>(
     new TezosToolkit("https://granadanet.smartpy.io")
   );
@@ -31,7 +31,7 @@ const Home: NextPage = () => {
   // const [title, settitle] = useState<any>("");
   // const [description, setdescription] = useState<any>("");
   let files:any, title:any, description:any;
-  let d = "";
+  let d = ""
   const serverUrl ="http://localhost:5001/unique-nuance-310113/us-central1/helloWorld";
   let newNft: any;
 
@@ -268,6 +268,7 @@ const Home: NextPage = () => {
       </div>
     );
   }
+  return <div></div>
 };
 
 export default Home;
