@@ -83,18 +83,21 @@ const ConnectButton = ({
           const tokenInfo = bytes2Char(tokenInfoBytes);
           const ipfsHasH =
             tokenInfo.slice(0, 7) === "ipfs://" ? tokenInfo.slice(7) : null;
+         if (ipfsHasH != null) {
           obj = await fetch(`https://cloudflare-ipfs.com/ipfs/${ipfsHasH}`)
-            .then(function (response) {
-              return response.text();
-            })
-            .then(async function (res) {
-              const data = JSON.parse(res);
-              const disUri = data.displayUri;
-              const imageHasH = await disUri.slice(0, 7) === "ipfs://" ? disUri.slice(7) : null;
-              let imageUrl = 'https://cloudflare-ipfs.com/ipfs/'+imageHasH;
-              data["displayUri"] = imageUrl;
-              return data;
-            });
+          .then(function (response) {
+            return response.text();
+          })
+          .then(async function (res) {
+            const data = JSON.parse(res);
+            console.log(data);
+            const disUri = data.displayUri;
+            const imageHasH = await disUri.slice(0, 7) === "ipfs://" ? disUri.slice(7) : null;
+            let imageUrl = 'https://cloudflare-ipfs.com/ipfs/'+imageHasH;
+            data["displayUri"] = imageUrl;
+            return data;
+          });
+         }
           // return {
           //   tokenId,
           //   ipfsHash:
